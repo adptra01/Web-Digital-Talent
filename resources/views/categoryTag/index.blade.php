@@ -1,15 +1,15 @@
 <x-layout>
     <x-slot name="title">Category & Tag</x-slot>
     @include('layouts.table')
-    <div class="container-fluid mb-3">
-        <ul class="nav nav-pills card-header-pills" role="tablist">
+    <div class="container-fluid mb-3 justify-content-center">
+        <ul class="nav nav-pills card-header-pills justify-content-center" role="tablist">
             <li class="nav-item">
                 <button type="button" class="nav-link active" data-bs-toggle="tab"
-                    data-bs-target="#navs-pills-within-card-active" role="tab">Active</button>
+                    data-bs-target="#navs-pills-within-card-active" role="tab">Category</button>
             </li>
             <li class="nav-item">
                 <button type="button" class="nav-link" data-bs-toggle="tab"
-                    data-bs-target="#navs-pills-within-card-link" role="tab">Link</button>
+                    data-bs-target="#navs-pills-within-card-link" role="tab">Tag</button>
             </li>
         </ul>
     </div>

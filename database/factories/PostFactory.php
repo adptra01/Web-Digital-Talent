@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\Post;
 use App\Models\Tag;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Facades\Storage;
 
 class PostFactory extends Factory
 {
@@ -16,12 +17,27 @@ class PostFactory extends Factory
      */
     public function definition()
     {
+        $imageUrl = 'https://source.unsplash.com/random/700x500/?write,academic';
+        // Ambil konten gambar dari URL
+        $imageContents = file_get_contents($imageUrl);
+
+        // Buat nama file thumbnail acak
+        $filename = 'thumbnail_' . uniqid() . '.jpg';
+
+        // Simpan gambar ke dalam folder "thumbnail"
+        Storage::disk('public')->put('thumbnail/' . $filename, $imageContents);
+
+        // Kembalikan URL lengkap dari gambar thumbnail yang disimpan
+        $thumbnail = 'thumbnail/' . $filename;
+
+
         return [
-            'name' => $this->faker->title(),
+            'title' => $this->faker->sentence(2),
             'category_id' => function ()  {
                 return Category::all()->random();
             },
-
+            'thumbnail' => $thumbnail,
+            'content' => '<p>'.$this->faker->paragraph().'</p>',
         ];
     }
 

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\TagController;
 use App\Models\Category;
 use App\Models\Tag;
@@ -43,4 +44,15 @@ Route::prefix('tag')->group(function () {
     Route::post('/', [TagController::class, 'store'])->name('tag.store');
     Route::put('/{id}', [TagController::class, 'update'])->name('tag.update');
     Route::delete('/{id}', [TagController::class, 'destroy'])->name('tag.destroy');
+});
+
+Route::prefix('post')->group(function () {
+
+    Route::get('/', [PostController::class, 'index'])->name('post.index');
+    Route::get('/create', [PostController::class, 'create'])->name('post.create');
+    Route::post('/', [PostController::class, 'store'])->name('post.store');
+    Route::get('/{id}/show', [PostController::class, 'show'])->name('post.show');
+    Route::get('/{id}/edit', [PostController::class, 'edit'])->name('post.edit');
+    Route::put('/{id}', [PostController::class, 'update'])->name('post.update');
+    Route::delete('/{id}', [PostController::class, 'destroy'])->name('post.destroy');
 });
